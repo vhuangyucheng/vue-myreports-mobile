@@ -1,6 +1,6 @@
 <script setup>
 const images = [
-  'public/s4a-module-with-pallet.jpg',
+  '/s4a-module-with-pallet.png',
     '/welcome.png',
     '/panel.png',
 

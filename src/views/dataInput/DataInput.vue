@@ -4,6 +4,7 @@ let active = ref()
 let lineChecked = ref('');
 let shiftChecked = ref('');
 
+let minDate =  new Date(2023, 11, 1)
 let submitDate = ref(0);
 const DateResult = ref('');
 const showCalendar = ref(false);
@@ -27,15 +28,16 @@ const sidebarOnChange = (index) => {
 
         <van-sidebar v-model="active" @change="sidebarOnChange">
           <van-sidebar-item title="条码QRCode" to="/DataInput/Qrcode"/>
-          <van-sidebar-item title="上料MaterialLoading" to="/DataInput/MaterialLoading"/>
-          <van-sidebar-item title="焊机Stringer"/>
-          <van-sidebar-item title="叠焊Bussing"/>
-          <van-sidebar-item title="1st EL"/>
-          <van-sidebar-item title="前道组长FrontLeader"/>
-          <van-sidebar-item title="层压Lamination"/>
-          <van-sidebar-item title="组框Framing"/>
-          <van-sidebar-item title="2nd EL"/>
-          <van-sidebar-item title="后道组长BackLeader"/>
+
+          <van-sidebar-item title="焊机Stringer" to="/DataInput/Stringer"/>
+          <van-sidebar-item title="叠焊Bussing" to="/DataInput/Bussing"/>
+          <van-sidebar-item title="1st EL" to="/DataInput/FirstEL"/>
+          <van-sidebar-item title="前道组长FrontLeader" to="/DataInput/FrontLeader"/>
+          <van-sidebar-item title="层压Lamination" to="/DataInput/Lamination"/>
+          <van-sidebar-item title="组框Framing" to="/DataInput/Framing"/>
+          <van-sidebar-item title="2nd EL" to="/DataInput/SecondEL"/>
+          <van-sidebar-item title="QC" to="/DataInput/BackLeader"/>
+          <van-sidebar-item title="Packing" to="/DataInput/Packing"/>
 
         </van-sidebar>
         <div class="sidebar-content">
@@ -51,7 +53,7 @@ const sidebarOnChange = (index) => {
               @click="showCalendar = true"
 
           />
-          <van-calendar v-model:show="showCalendar" @confirm="onConfirm"/>
+          <van-calendar v-model:show="showCalendar" :min-date="minDate" @confirm="onConfirm"/>
 
           <van-field name="radio" label="线体">
             <template #input>

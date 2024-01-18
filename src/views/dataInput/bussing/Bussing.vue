@@ -18,7 +18,7 @@ const onSubmit = (values) => {
       // type: 'success',
       message: '请先完成日期和班别, Please finish Date and Shift Selection',
       position: 'top',
-      duration: 1000,
+      duration: 7000,
     });
     return null;
   }
@@ -29,9 +29,11 @@ const onSubmit = (values) => {
     method: "POST",
     data: {
       shiftId: shiftId,
-      qrcodeStart: values.QRCodeStart,
-      qrcodeEnd: values.QRCodeEnd,
-      qrcodeAmount: values.QRCodeAmount,
+      bussingOutput: values.bussingOutput,
+      bussingMiswelding: values.bussingMiswelding,
+      bussingBadmargin: values.bussingBadmargin,
+      bussingBadstringspacing: values.bussingBadstringspacing,
+      bussingOthers: values.bussingOthers,
     },
     contentType: "json",
     processData: false,
@@ -63,9 +65,11 @@ const onSubmit = (values) => {
 }
 
 const formState = reactive({
-  QRCodeStart: '',
-  QRCodeEnd: '',
-  QRCodeAmount: '',
+  bussingOutput: '',
+  bussingMiswelding: '',
+  bussingBadmargin: '',
+  bussingBadstringspacing: '',
+  bussingOthers: '',
 })
 </script>
 
@@ -74,25 +78,40 @@ const formState = reactive({
     <van-form @submit="onSubmit">
       <van-cell-group inset>
         <van-field
-            v-model="formState.QRCodeStart"
-            name="QRCodeStart"
-            label="条码开始"
-            placeholder="QRCodeStart"
-            :rules="[{ required: true, message: '请填QRCodeStart' }]"
+            v-model="formState.bussingOutput"
+            name="bussingOutput"
+            label="叠焊机输出"
+            placeholder="bussingOutput"
+            :rules="[{ required: true, message: '请填数据please finish' }]"
         />
         <van-field
-            v-model="formState.QRCodeEnd"
-            name="QRCodeEnd"
-            label="条码结束"
-            placeholder="QRCodeEnd"
-            :rules="[{ required: true, message: '请填QRCodeEnd' }]"
+            v-model="formState.bussingMiswelding"
+            name="bussingMiswelding"
+            label="虚焊"
+            placeholder="bussingMisWelding"
+            :rules="[{ required: true, message: '请填数据please finish' }]"
         />
         <van-field
-            v-model="formState.QRCodeAmount"
-            name="QRCodeAmount"
-            label="条码数量"
-            placeholder="QRCodeAmount"
-            :rules="[{ required: true, message: '请填QRCodeAmount' }]"
+            v-model="formState.bussingBadmargin"
+            name="bussingBadmargin"
+            label="边距不良"
+            placeholder="bussingBadMargin"
+            :rules="[{ required: true, message: '请填数据please finish' }]"
+        />
+
+        <van-field
+            v-model="formState.bussingBadstringspacing"
+            name="bussingBadstringspacing"
+            label="串间距不良"
+            placeholder="bussingBadStringSpacing"
+            :rules="[{ required: true, message: '请填数据please finish' }]"
+        />
+        <van-field
+            v-model="formState.bussingOthers"
+            name="bussingOthers"
+            label="其他"
+            placeholder="bussingOthers"
+            :rules="[{ required: true, message: '请填数据please finish' }]"
         />
 
         <div style="margin: 16px">

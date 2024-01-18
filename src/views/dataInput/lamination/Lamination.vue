@@ -18,7 +18,7 @@ const onSubmit = (values) => {
       // type: 'success',
       message: '请先完成日期和班别, Please finish Date and Shift Selection',
       position: 'top',
-      duration: 1000,
+      duration: 7000,
     });
     return null;
   }
@@ -29,9 +29,8 @@ const onSubmit = (values) => {
     method: "POST",
     data: {
       shiftId: shiftId,
-      qrcodeStart: values.QRCodeStart,
-      qrcodeEnd: values.QRCodeEnd,
-      qrcodeAmount: values.QRCodeAmount,
+      laminator1Output: values.laminator1Output,
+      laminationDefect: values.laminationDefect,
     },
     contentType: "json",
     processData: false,
@@ -63,9 +62,9 @@ const onSubmit = (values) => {
 }
 
 const formState = reactive({
-  QRCodeStart: '',
-  QRCodeEnd: '',
-  QRCodeAmount: '',
+  laminator1Output: '',
+  laminationDefect: '',
+
 })
 </script>
 
@@ -74,25 +73,18 @@ const formState = reactive({
     <van-form @submit="onSubmit">
       <van-cell-group inset>
         <van-field
-            v-model="formState.QRCodeStart"
-            name="QRCodeStart"
-            label="条码开始"
-            placeholder="QRCodeStart"
-            :rules="[{ required: true, message: '请填QRCodeStart' }]"
+            v-model="formState.laminator1Output"
+            name="laminator1Output"
+            label="层压输出"
+            placeholder="laminatorOutput"
+            :rules="[{ required: true, message: '请填数据please finish' }]"
         />
         <van-field
-            v-model="formState.QRCodeEnd"
-            name="QRCodeEnd"
-            label="条码结束"
-            placeholder="QRCodeEnd"
-            :rules="[{ required: true, message: '请填QRCodeEnd' }]"
-        />
-        <van-field
-            v-model="formState.QRCodeAmount"
-            name="QRCodeAmount"
-            label="条码数量"
-            placeholder="QRCodeAmount"
-            :rules="[{ required: true, message: '请填QRCodeAmount' }]"
+            v-model="formState.laminationDefect"
+            name="laminationDefect"
+            label="层压不良"
+            placeholder="laminationDefect"
+            :rules="[{ required: true, message: '请填数据please finish' }]"
         />
 
         <div style="margin: 16px">

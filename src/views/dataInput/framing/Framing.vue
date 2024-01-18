@@ -18,7 +18,7 @@ const onSubmit = (values) => {
       // type: 'success',
       message: '请先完成日期和班别, Please finish Date and Shift Selection',
       position: 'top',
-      duration: 1000,
+      duration: 7000,
     });
     return null;
   }
@@ -29,9 +29,10 @@ const onSubmit = (values) => {
     method: "POST",
     data: {
       shiftId: shiftId,
-      qrcodeStart: values.QRCodeStart,
-      qrcodeEnd: values.QRCodeEnd,
-      qrcodeAmount: values.QRCodeAmount,
+      framingOutput: values.framingOutput,
+      framingScrap: values.framingScrap,
+      appearanceInspection: values.appearanceInspection,
+      junctionboxDefect: values.junctionboxDefect,
     },
     contentType: "json",
     processData: false,
@@ -63,9 +64,11 @@ const onSubmit = (values) => {
 }
 
 const formState = reactive({
-  QRCodeStart: '',
-  QRCodeEnd: '',
-  QRCodeAmount: '',
+  framingOutput: '',
+  framingScrap:'',
+  appearanceInspection:'',
+  junctionboxDefect:'',
+
 })
 </script>
 
@@ -74,27 +77,33 @@ const formState = reactive({
     <van-form @submit="onSubmit">
       <van-cell-group inset>
         <van-field
-            v-model="formState.QRCodeStart"
-            name="QRCodeStart"
-            label="条码开始"
-            placeholder="QRCodeStart"
-            :rules="[{ required: true, message: '请填QRCodeStart' }]"
+            v-model="formState.framingOutput"
+            name="framingOutput"
+            label="组框输出"
+            placeholder="framingOutput"
+            :rules="[{ required: true, message: '请填数据please finish' }]"
         />
         <van-field
-            v-model="formState.QRCodeEnd"
-            name="QRCodeEnd"
-            label="条码结束"
-            placeholder="QRCodeEnd"
-            :rules="[{ required: true, message: '请填QRCodeEnd' }]"
+            v-model="formState.appearanceInspection"
+            name="appearanceInspection"
+            label="外观检不良"
+            placeholder="VisualInspectionDefect"
+            :rules="[{ required: true, message: '请填数据please finish' }]"
         />
         <van-field
-            v-model="formState.QRCodeAmount"
-            name="QRCodeAmount"
-            label="条码数量"
-            placeholder="QRCodeAmount"
-            :rules="[{ required: true, message: '请填QRCodeAmount' }]"
+            v-model="formState.framingScrap"
+            name="framingScrap"
+            label="组框不良"
+            placeholder="framingDefect"
+            :rules="[{ required: true, message: '请填数据please finish' }]"
         />
-
+        <van-field
+            v-model="formState.junctionboxDefect"
+            name="junctionboxDefect"
+            label="接线盒不良"
+            placeholder="junctionboxDefect"
+            :rules="[{ required: true, message: '请填数据please finish' }]"
+        />
         <div style="margin: 16px">
           <van-button round block type="primary" native-type="submit">
             提交Submit

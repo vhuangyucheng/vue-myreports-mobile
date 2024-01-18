@@ -18,7 +18,7 @@ const onSubmit = (values) => {
       // type: 'success',
       message: '请先完成日期和班别, Please finish Date and Shift Selection',
       position: 'top',
-      duration: 1000,
+      duration: 7000,
     });
     return null;
   }
@@ -29,9 +29,8 @@ const onSubmit = (values) => {
     method: "POST",
     data: {
       shiftId: shiftId,
-      qrcodeStart: values.QRCodeStart,
-      qrcodeEnd: values.QRCodeEnd,
-      qrcodeAmount: values.QRCodeAmount,
+      firstel2Output: values.firstEL2Output,
+      firstel2Defect: values.firstEL2Defect,
     },
     contentType: "json",
     processData: false,
@@ -63,9 +62,8 @@ const onSubmit = (values) => {
 }
 
 const formState = reactive({
-  QRCodeStart: '',
-  QRCodeEnd: '',
-  QRCodeAmount: '',
+  firstEL1Output: '',
+  firstEL2Defect: '',
 })
 </script>
 
@@ -74,25 +72,18 @@ const formState = reactive({
     <van-form @submit="onSubmit">
       <van-cell-group inset>
         <van-field
-            v-model="formState.QRCodeStart"
-            name="QRCodeStart"
-            label="条码开始"
-            placeholder="QRCodeStart"
-            :rules="[{ required: true, message: '请填QRCodeStart' }]"
+            v-model="formState.firstEL2Output"
+            name="firstEL2Output"
+            label="前道EL输出"
+            placeholder="firstELOutput"
+            :rules="[{ required: true, message: '请填数据please finish' }]"
         />
         <van-field
-            v-model="formState.QRCodeEnd"
-            name="QRCodeEnd"
-            label="条码结束"
-            placeholder="QRCodeEnd"
-            :rules="[{ required: true, message: '请填QRCodeEnd' }]"
-        />
-        <van-field
-            v-model="formState.QRCodeAmount"
-            name="QRCodeAmount"
-            label="条码数量"
-            placeholder="QRCodeAmount"
-            :rules="[{ required: true, message: '请填QRCodeAmount' }]"
+            v-model="formState.firstEL2Defect"
+            name="firstEL2Defect"
+            label="前道EL不良"
+            placeholder="firstELDefect"
+            :rules="[{ required: true, message: '请填数据please finish' }]"
         />
 
         <div style="margin: 16px">

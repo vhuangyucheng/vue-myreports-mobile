@@ -106,7 +106,7 @@ const formState = reactive({
         />
         <div style="margin: 16px">
           <van-button round block type="primary" native-type="submit">
-            提交
+            提交Submit
           </van-button>
         </div>
       </van-cell-group>
