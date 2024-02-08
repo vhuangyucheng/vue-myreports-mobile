@@ -1,4 +1,8 @@
 <script setup>
+import goBackArrow from "../../store/goBackArrow";
+const store = goBackArrow();
+store.disableGoBackArrow();
+store.setPageName("数据录入DataInput");
 
 let active = ref()
 let lineChecked = ref('');

@@ -9,5 +9,6 @@ const pinia = createPinia()
 
 app.use(pinia)
 app.use(myRouter)
+
 // app.use(Antd)
 app.mount('#app')

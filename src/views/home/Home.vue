@@ -1,4 +1,9 @@
 <script setup>
+import goBackArrow from "../../store/goBackArrow";
+const store = goBackArrow();
+store.disableGoBackArrow();
+store.setPageName("主页Homepage");
+
 const images = [
   '/s4a-module-with-pallet.png',
     '/welcome.png',
@@ -13,6 +18,7 @@ const images = [
       <img :src="image" class="fill-container" />
     </van-swipe-item>
   </van-swipe>
+
 </template>
 
 <style scoped>

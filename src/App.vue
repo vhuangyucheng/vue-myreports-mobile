@@ -11,7 +11,7 @@ goBackArrowStore.setPageName("主页Homepage")
 
   <van-nav-bar safe-area-inset-top
                :title="goBackArrowStore.name"
-               :left-text="goBackArrowStore.leftArrow === true?'返回':''"
+               :left-text="goBackArrowStore.leftArrow === true?'返回Back':''"
                :left-arrow="goBackArrowStore.leftArrow === true"
                @click-left="onClickLeft">
     <template #right>
@@ -25,7 +25,7 @@ goBackArrowStore.setPageName("主页Homepage")
   <van-tabbar v-model="active" :safe-area-inset-bottom="true"  :placeholder="true">
     <van-tabbar-item name="search" icon="home-o"  to="/">主页Home</van-tabbar-item>
     <van-tabbar-item name="home" icon="search" to="/DataInput">数据Input</van-tabbar-item>
-    <van-tabbar-item name="friends" icon="friends-o" to="/Test">未开发Blank</van-tabbar-item>
+    <van-tabbar-item name="friends" icon="friends-o" to="/ListTicket">工单Ticket</van-tabbar-item>
     <van-tabbar-item name="setting" icon="setting-o" to="/Blank">未开发Blank</van-tabbar-item>
   </van-tabbar>
 

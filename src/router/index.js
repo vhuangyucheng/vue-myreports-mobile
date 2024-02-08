@@ -2,6 +2,8 @@ import {createRouter, createWebHistory} from 'vue-router'
 import Blank from "../views/test/Blank.vue";
 import Test from "../views/test/Test.vue";
 import DataInput from "../views/dataInput/DataInput.vue";
+import SaveTicket from "../views/ticket/SaveTicket.vue";
+import ListTicket from "../views/ticket/ListTicket.vue";
 import Home from "../views/home/Home.vue";
 import InputQrcode from "../views/dataInput/qrcode/InputQrcode.vue";
 import MaterialLoading from "../views/dataInput/materialLoading/MaterialLoading.vue";
@@ -32,6 +34,16 @@ const myRouter = createRouter({
             path: '/Test',
             name: 'Test',
             component: Test
+        },
+        {
+            path: '/SaveTicket',
+            name: 'SaveTicket',
+            component: SaveTicket
+        },
+        {
+            path: '/ListTicket',
+            name: 'ListTicket',
+            component: ListTicket
         },
         {
             path: '/DataInput',
