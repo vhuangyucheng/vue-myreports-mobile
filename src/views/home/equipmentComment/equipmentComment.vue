@@ -29,12 +29,7 @@ const onSubmit = (values) => {
     method: "POST",
     data: {
       shiftId: shiftId,
-      firstel2Output: values.firstEL2Output,
-      firstel2Defect: values.firstEL2Defect,
-      reworkOutput: values.reworkOutput,
-      reworkNgstring: values.reworkNgstring,
-      repairScrap: values.repairScrap,
-      repairStringScrap: values.repairStringScrap,
+      equipmentComment: values.equipmentComment,
     },
     contentType: "json",
     processData: false,
@@ -66,12 +61,7 @@ const onSubmit = (values) => {
 }
 
 const formState = reactive({
-  firstEL1Output: '',
-  firstEL2Defect: '',
-  reworkOutput: '',
-  reworkNgstring: '',
-  repairScrap: '',
-  repairStringScrap: '',
+  equipmentComment:'',
 })
 </script>
 
@@ -80,48 +70,17 @@ const formState = reactive({
     <van-form @submit="onSubmit">
       <van-cell-group inset>
         <van-field
-            v-model="formState.firstEL2Output"
-            name="firstEL2Output"
-            label="前道EL输出"
-            placeholder="firstELOutput"
-            :rules="[{ required: true, message: '请填数据please finish' }]"
-        />
-        <van-field
-            v-model="formState.firstEL2Defect"
-            name="firstEL2Defect"
-            label="前道EL不良"
-            placeholder="firstELDefect"
-            :rules="[{ required: true, message: '请填数据please finish' }]"
-        />
-        <van-field
-            v-model="formState.reworkOutput"
-            name="reworkOutput"
-            label="返修件"
-            placeholder="reworkModule"
+            v-model="formState.equipmentComment"
+            name="equipmentComment"
+            label="设备组总结"
+            placeholder="Equipment Comment"
+            rows="10"
+            type="textarea"
+            maxlength="700"
+            show-word-limit
             :rules="[{ required: true, message: '请填数据please finish' }]"
         />
 
-        <van-field
-            v-model="formState.reworkNgstring"
-            name="reworkNgstring"
-            label="返修串"
-            placeholder="reworkNgString"
-            :rules="[{ required: true, message: '请填数据please finish' }]"
-        />
-        <van-field
-            v-model="formState.repairScrap"
-            name="repairScrap"
-            label="返修件破片"
-            placeholder="ModuleRepairScrap"
-            :rules="[{ required: true, message: '请填数据please finish' }]"
-        />
-        <van-field
-            v-model="formState.repairStringScrap"
-            name="repairStringScrap"
-            label="返修串破片"
-            placeholder="StringRepairScrap"
-            :rules="[{ required: true, message: '请填数据please finish' }]"
-        />
 
         <div style="margin: 16px">
           <van-button round block type="primary" native-type="submit">

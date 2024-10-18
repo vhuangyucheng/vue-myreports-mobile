@@ -15,6 +15,23 @@ function getFormattedDate() {
   return year + month + day;
 }
 
+const formState = reactive({
+  ticketId: 0,
+  lineChecked: 0,
+  priorityChecked: 0,
+  statusChecked: 0,
+  durationChecked: 0,
+  issuerChecked: 0,
+  responderChecked: 0,
+  requestMessage: '',
+  shiftChecked: 0
+})
+
+const replyFormState = reactive({
+  reply: ''
+})
+
+
 const requestOnSubmit = (values) => {
   if (formState.lineChecked === 0 || formState.priorityChecked === 0 || formState.statusChecked === 0 || formState.durationChecked === 0
       || formState.issuerChecked === 0 || formState.responderChecked === 0 || formState.shiftChecked === 0) {
@@ -27,11 +44,12 @@ const requestOnSubmit = (values) => {
     return null;
   }
   let shiftId = parseInt(getFormattedDate() + formState.lineChecked + formState.shiftChecked)
-  // console.log(shiftId)
+  console.log(values)
   axios({
     url: "/apiStringer/ticket/saveAndUpdate",
     method: "POST",
     data: {
+      ticketId :ticketId===0?null:ticketId,
       ticketShiftId: shiftId,
       ticketLine: values.lineChecked,
       ticketPriority: values.priorityChecked,
@@ -50,7 +68,7 @@ const requestOnSubmit = (values) => {
         type: 'success',
         message: '提交成功Submit Succeed',
         position: 'top',
-        duration: 7000,
+        duration: 3000,
       });
     } else {
       showNotify({
@@ -70,24 +88,28 @@ const requestOnSubmit = (values) => {
   })
 }
 
+const decodeShiftId = (shiftId) =>{
+  return (shiftId%10).toString()
+}
 const replyOnSubmit = (values) => {
   axios({
     url: "/apiStringer/ticket/saveAndUpdate",
     method: "POST",
     data: {
-
+      ticketId :ticketId===0?null:ticketId,
       ticketReply: values.reply,
     },
     contentType: "json",
     processData: false,
     dataType: "json",
   }).then(function (response) {
+
     if (response.data.code === '1') {
       showNotify({
         type: 'success',
         message: '提交成功Submit Succeed',
         position: 'top',
-        duration: 7000,
+        duration: 3000,
       });
     } else {
       showNotify({
@@ -107,21 +129,50 @@ const replyOnSubmit = (values) => {
   })
 }
 
-const formState = reactive({
-  ticketId: 0,
-  lineChecked: 0,
-  priorityChecked: 0,
-  statusChecked: 0,
-  durationChecked: 0,
-  issuerChecked: 0,
-  responderChecked: 0,
-  requestMessage: '',
-  shiftChecked: 0
-})
+const route = useRoute();
+let ticketId = route.query.ticketId;
+if (ticketId !== undefined) {
+  axios({
+    url: "/apiStringer/ticket/getTicket",
+    method: "POST",
+    data: {
+      ticketId: ticketId,
+    },
+    contentType: "json",
+    processData: false,
+    dataType: "json",
+  }).then(function (response) {
+    console.log(response)
+    if (response.data.code === '1') {
+      console.log("dd")
 
-const replyFormState = reactive({
-  reply: ''
-})
+      formState.ticketId = response.data.data.ticketId
+      formState.lineChecked = response.data.data.ticketLine.toString()
+      formState.priorityChecked = response.data.data.ticketPriority.toString()
+      formState.statusChecked = response.data.data.ticketStatus.toString()
+      formState.durationChecked = response.data.data.ticketDuration.toString()
+      formState.issuerChecked = response.data.data.ticketIssuer.toString()
+      formState.responderChecked = response.data.data.ticketResponder.toString()
+      formState.requestMessage = response.data.data.ticketMessage
+      formState.shiftChecked = decodeShiftId(response.data.data.ticketShiftId)
+      replyFormState.reply = response.data.data.ticketReply
+    } else {
+      showNotify({
+        // type: 'success',
+        message: '提交失败,联系主管Submit Failed, contact your supervisor',
+        position: 'top',
+        duration: 7000,
+      });
+    }
+  }).catch(error => {
+    showNotify({
+      // type: 'success',
+      message: "服务器问题，请联系IT, Server error, please contact IT",
+      position: 'top',
+      duration: 7000,
+    });
+  })
+}
 
 
 </script>

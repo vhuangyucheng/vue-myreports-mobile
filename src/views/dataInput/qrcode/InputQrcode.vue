@@ -31,6 +31,8 @@ const onSubmit = (values) => {
       shiftId: shiftId,
       qrcodeStart: values.QRCodeStart,
       qrcodeEnd: values.QRCodeEnd,
+      qrcodeStart2: values.QRCodeStart2,
+      qrcodeEnd2: values.QRCodeEnd2,
       qrcodeAmount: values.QRCodeAmount,
     },
     contentType: "json",
@@ -65,6 +67,8 @@ const onSubmit = (values) => {
 const formState = reactive({
   QRCodeStart: '',
   QRCodeEnd: '',
+  QRCodeStart2: '',
+  QRCodeEnd2: '',
   QRCodeAmount: '',
 })
 </script>
@@ -86,6 +90,20 @@ const formState = reactive({
             label="条码结束"
             placeholder="QRCodeEnd"
             :rules="[{ required: true, message: '请填QRCodeEnd' }]"
+        />
+        <van-field
+            v-model="formState.QRCodeStart2"
+            name="QRCodeStart2"
+            label="条码开始2"
+            placeholder="QRCodeStart(2"
+
+        />
+        <van-field
+            v-model="formState.QRCodeEnd2"
+            name="QRCodeEnd2"
+            label="条码结束2"
+            placeholder="QRCodeEnd(2"
+
         />
         <van-field
             v-model="formState.QRCodeAmount"

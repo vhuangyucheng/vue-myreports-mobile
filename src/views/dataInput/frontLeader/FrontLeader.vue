@@ -32,7 +32,7 @@ const onSubmit = (values) => {
       cellsReceive: values.cellsReceive,
       cellsInput: values.cellsInput,
       incomingScrap: values.incomingScrap,
-      repairScrap: values.repairScrap,
+
       incidentScrap: values.incidentScrap,
       stringerScrap: values.stringerScrap,
       cellsLeft: values.cellsLeft,
@@ -72,7 +72,7 @@ const formState = reactive({
   cellsReceive: '',
   cellsInput: '',
   incomingScrap: '',
-  repairScrap: '',
+
   incidentScrap: '',
   stringerScrap: '',
   cellsLeft: '',
@@ -114,13 +114,7 @@ const formState = reactive({
             placeholder="incomingScrap"
             :rules="[{ required: true, message: '请填数据please finish' }]"
         />
-        <van-field
-            v-model="formState.repairScrap"
-            name="repairScrap"
-            label="返修破片"
-            placeholder="repairScrap"
-            :rules="[{ required: true, message: '请填数据please finish' }]"
-        />
+
         <van-field
             v-model="formState.incidentScrap"
             name="incidentScrap"

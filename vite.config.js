@@ -31,6 +31,12 @@ export default defineConfig({
         changeOrigin: true,   // 开启跨域
         rewrite: (path) => path.replace(/\/apiMes/, '')  // 路径重写
       },
+      '/apiGoogle': {
+        target: 'https://translate.google.cn/ ',    // 目标接口前缀
+        ws: true,       //  代理webscoked
+        changeOrigin: true,   // 开启跨域
+        rewrite: (path) => path.replace(/\/apiGoogle/, '')  // 路径重写
+      },
 
     }
   },
